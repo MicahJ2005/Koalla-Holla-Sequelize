@@ -162,6 +162,10 @@ class EnhancedTable extends React.Component {
     this.setState({ rowsPerPage: event.target.value });
   };
 
+  readyToTransfer = (n) => {
+    this.props.dispatch({ type: 'READY_TO_TRANSFER', payload: n});
+  };
+
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
