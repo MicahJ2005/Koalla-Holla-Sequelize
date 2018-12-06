@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
   let ready_to_transfer = req.body.data.ready_to_transfer;
   let notes = req.body.data.notes;
 
-  console.log(`POST request add Koalla`, req.body);
+  console.log(`POST request add Koalla`, req.body.data);
   let newKoalla = Koalla.build({ 
     name: name, 
     gender: gender,

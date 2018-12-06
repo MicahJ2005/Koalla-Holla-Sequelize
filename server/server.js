@@ -17,8 +17,12 @@ Koalla.sync();
 const koallaRouter = require('./routes/koalla.router');
 app.use('/koalla', koallaRouter);
 
+// Serve static files
+app.use(express.static('build'));
 
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log('listening on port', PORT)
 });
+
+module.exports = app;
