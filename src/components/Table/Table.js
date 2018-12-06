@@ -64,7 +64,7 @@ class EnhancedTableHead extends React.Component {
 //   };
 
   render() {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
+    const { order, orderBy, numSelected, rowCount } = this.props;
 
     return (
       <TableHead>
@@ -73,7 +73,6 @@ class EnhancedTableHead extends React.Component {
             <Checkbox
               indeterminate={numSelected > 0 && numSelected < rowCount}
               checked={numSelected === rowCount}
-              onChange={onSelectAllClick}
             />
           </TableCell>
           {rows.map(row => {
@@ -109,7 +108,6 @@ class EnhancedTableHead extends React.Component {
 EnhancedTableHead.propTypes = {
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.string.isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
@@ -156,14 +154,6 @@ class EnhancedTable extends React.Component {
     this.props.dispatch({type: 'DELETE_BEAR', payload: id })
   }
 
-  handleSelectAllClick = event => {
-    if (event.target.checked) {
-      this.setState(state => ({ selected: state.data.map(n => n.id) }));
-      return;
-    }
-    this.setState({ selected: [] });
-  };
-
   handleChangePage = (event, page) => {
     this.setState({ page });
   };
@@ -172,8 +162,6 @@ class EnhancedTable extends React.Component {
     this.setState({ rowsPerPage: event.target.value });
   };
 
-  isSelected = id => this.state.selected.indexOf(id) !== -1;
-
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -181,19 +169,16 @@ class EnhancedTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={this.handleSelectAllClick}
               onRequestSort={this.handleRequestSort}
               rowCount={data.length}
             />
             <TableBody>
-              {/* <pre>{JSON.stringify(this.props.state.koallaReducer)}</pre> */}
               {stableSort(this.props.state.koallaReducer, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
