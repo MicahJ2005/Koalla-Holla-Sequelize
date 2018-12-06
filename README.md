@@ -39,7 +39,7 @@ Create PostgreSQL database named `koalla_library`
 * Navigate to `localhost:3000`
 
 ## Screen Shots
-![Table](wireframes/list.png)
+![Table](wireframes/List.png)
 
 ## Completed Features
 - [x] Koala list
