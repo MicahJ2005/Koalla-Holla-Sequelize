@@ -18,6 +18,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import { connect } from 'react-redux';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein, notes) {
@@ -62,6 +63,10 @@ class EnhancedTableHead extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
+
+//   componentDidMount() {
+//     this.props.dispatch({type: 'GET_KOALLAS'});
+//   };
 
   render() {
     const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
@@ -342,4 +347,6 @@ EnhancedTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(EnhancedTable);
+const mapStateToProps = state => ({state});
+
+export default (connect(mapStateToProps)(withStyles(styles)(EnhancedTable)));

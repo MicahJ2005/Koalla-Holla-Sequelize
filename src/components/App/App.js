@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import Table from '../Table/Table';
 import NewBear from '../NewBear/NewBear';
+import { connect } from 'react-redux';
 
 class App extends Component {
+
+  // componentDidMount() {
+  //   this.props.dispatch({type: 'GET_KOALLAS'});
+  // };
+
   render() {
     return (
       <div className="App">
@@ -17,4 +23,6 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({state});
+
+export default connect(mapStateToProps)(App);
