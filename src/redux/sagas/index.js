@@ -3,6 +3,6 @@ import koallaSaga from './koallaSaga';
 
 export default function* rootSaga() {
     yield all([
-
+        koallaSaga(),
     ]);
   }

@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 
 class App extends Component {
 
-  // componentDidMount() {
-  //   this.props.dispatch({type: 'GET_KOALLAS'});
-  // };
+  componentDidMount() {
+    this.props.dispatch({type: 'GET_KOALLAS'});
+  };
 
   render() {
     return (

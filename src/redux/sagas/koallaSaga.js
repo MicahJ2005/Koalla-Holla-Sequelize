@@ -3,9 +3,10 @@ import axios from 'axios';
 
 function* getKoallas() {
     const response = yield call(axios.get, '/koalla');
+    yield put({type: 'SET_KOALLAS', payload: response});
 }
 
-function* addGamesSaga() {
+function* koallaSaga() {
     yield takeLatest('GET_KOALLAS', getKoallas);
     
   }

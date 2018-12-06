@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-
+import koallaReducer from './koallaReducer';
 
 
 
@@ -8,7 +8,7 @@ import { combineReducers } from 'redux';
 
 
 const rootReducer = combineReducers({
-
+    koallaReducer
 });
 
 
