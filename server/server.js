@@ -15,7 +15,7 @@ Koalla.sync();
 
 // Routers
 const koallaRouter = require('./routes/koalla.router');
-app.use('/', koallaRouter);
+app.use('/koalla', koallaRouter);
 
 
 const PORT = 5000;
