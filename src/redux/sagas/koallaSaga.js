@@ -1,6 +1,7 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import axios from 'axios';
 
+//GET all Koallas from db
 function* getKoallas() {
     try{
     const response = yield call(axios.get, '/koalla');
@@ -11,6 +12,7 @@ function* getKoallas() {
     }
 }
 
+//POST Koallas to db
 function* addKoallas(action) {
     console.log('in addKoallas saga', action.payload);
     try{
@@ -22,6 +24,7 @@ function* addKoallas(action) {
     }
 }
 
+//PUT Koalla ready to transfer button
 function* readyToTransfer(action){
     console.log('in readyToTransfer Saga', action.payload);
     try{
