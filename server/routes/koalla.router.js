@@ -19,6 +19,7 @@ router.get('/', (req, res) => {
 
 // Add a Koalla
 router.post('/', (req, res) => {
+    
   let name = req.body.data.name;
   let gender = req.body.data.gender;
   let age = req.body.data.age;
@@ -49,7 +50,7 @@ router.put('/:id', (req, res) => {
   let ready_to_transfer = req.body.ready_to_transfer;
   console.log(`PUT request update Transfer ${id}`, req.body);
   let updates = { 
-    ready_to_transfer: ready_to_transfer
+    ready_to_transfer: true
   };
   Koalla.update(updates, { where: {id: id }})
     .then( result => {

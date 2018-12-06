@@ -16,9 +16,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
+// import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein, notes) {
@@ -273,6 +274,12 @@ class EnhancedTable extends React.Component {
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+  readyToTransfer = (n) => {
+    console.log('in readyToTransfer click', n);
+    this.props.dispatch({ type: 'READY_TO_TRANSFER', payload: n})
+    
+  }
+
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -316,7 +323,14 @@ class EnhancedTable extends React.Component {
                       <TableCell numeric>{n.name}</TableCell>
                       <TableCell numeric>{n.gender}</TableCell>
                       <TableCell numeric>{n.age}</TableCell>
-                      <TableCell numeric>{n.ready_to_transfer}</TableCell>
+                      <div>
+                        {n.ready_to_transfer !== true ? (
+                          <Button onClick={()=> this.readyToTransfer(n)}variant="contained" color="primary">Transfer?</Button>
+                        ) : (<h3>Ready to Transfer</h3> )
+                      }
+                      
+
+                      </div>
                       <TableCell numeric>{n.notes}</TableCell>
                     </TableRow>
                   );
