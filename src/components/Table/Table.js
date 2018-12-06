@@ -64,6 +64,11 @@ class EnhancedTableHead extends React.Component {
     this.props.onRequestSort(event, property);
   };
 
+  handleDelete = (event) => {
+    console.log('delete button was clicked', event.target);
+    
+  }
+
 //   componentDidMount() {
 //     this.props.dispatch({type: 'GET_KOALLAS'});
 //   };
@@ -169,7 +174,7 @@ let EnhancedTableToolbar = props => {
       <div className={classes.actions}>
         {numSelected > 0 ? (
           <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
+            <IconButton aria-label="Delete" onClick={this.handleDelete}>
               <DeleteIcon />
             </IconButton>
           </Tooltip>
