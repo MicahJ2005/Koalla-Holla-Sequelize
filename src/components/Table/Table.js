@@ -161,7 +161,7 @@ let EnhancedTableToolbar = props => {
           </Typography>
         ) : (
           <Typography variant="h6" id="tableTitle">
-            Nutrition
+            Bears
           </Typography>
         )}
       </div>
@@ -176,7 +176,7 @@ let EnhancedTableToolbar = props => {
         ) : (
           <Tooltip title="Filter list">
             <IconButton aria-label="Filter list">
-              <FilterListIcon />
+              {/* <FilterListIcon /> */}
             </IconButton>
           </Tooltip>
         )}
@@ -287,7 +287,8 @@ class EnhancedTable extends React.Component {
               rowCount={data.length}
             />
             <TableBody>
-              {stableSort(data, getSorting(order, orderBy))
+              {/* <pre>{JSON.stringify(this.props.state.koallaReducer)}</pre> */}
+              {stableSort(this.props.state.koallaReducer, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
                   const isSelected = this.isSelected(n.id);
@@ -305,12 +306,12 @@ class EnhancedTable extends React.Component {
                         <Checkbox checked={isSelected} />
                       </TableCell>
                       <TableCell component="th" scope="row" padding="none">
-                        {n.name}
+                        {n.id}
                       </TableCell>
-                      <TableCell numeric>{n.calories}</TableCell>
-                      <TableCell numeric>{n.fat}</TableCell>
-                      <TableCell numeric>{n.carbs}</TableCell>
-                      <TableCell numeric>{n.protein}</TableCell>
+                      <TableCell numeric>{n.name}</TableCell>
+                      <TableCell numeric>{n.gender}</TableCell>
+                      <TableCell numeric>{n.age}</TableCell>
+                      <TableCell numeric>{n.ready_to_transfer}</TableCell>
                       <TableCell numeric>{n.notes}</TableCell>
                     </TableRow>
                   );

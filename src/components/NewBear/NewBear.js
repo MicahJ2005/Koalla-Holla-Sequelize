@@ -28,9 +28,23 @@ const mapReduxStateToProps = reduxState => ({
    this.setState({ open: true });
  };
 
- handleClose = () => {
-   this.setState({ open: false });
+ handleCancel = () => {
+   this.setState({ 
+     open: false, 
+    });
  };
+ handleSave = () => {
+  this.setState({ 
+    open: false, 
+   });
+   this.props.dispatch({type: 'ADD_KOALLA', payload: this.state});
+};
+
+ handleChange = (event) => {
+   this.setState({
+     [event.target.name]: event.target.value
+   })
+ }
 
  render() {
    return (
@@ -55,6 +69,7 @@ const mapReduxStateToProps = reduxState => ({
              fullWidth
              name="name"
              value={this.state.name}
+             onChange={this.handleChange}
            />
            <TextField
              autoFocus
@@ -65,6 +80,7 @@ const mapReduxStateToProps = reduxState => ({
              fullWidth
              name="gender"
              value={this.state.gender}
+             onChange={this.handleChange}
            />
            <TextField
              autoFocus
@@ -75,6 +91,7 @@ const mapReduxStateToProps = reduxState => ({
              fullWidth
              name="age"
              value={this.state.age}
+             onChange={this.handleChange}
            />
            <TextField
              autoFocus
@@ -85,6 +102,7 @@ const mapReduxStateToProps = reduxState => ({
              fullWidth
              name="ready_to_transfer"
              value={this.state.ready_to_transfer}
+             onChange={this.handleChange}
            />
            <TextField
              autoFocus
@@ -93,15 +111,16 @@ const mapReduxStateToProps = reduxState => ({
              label="Notes"
              type="text"
              fullWidth
-             name="Notes"
+             name="notes"
              value={this.state.notes}
+             onChange={this.handleChange}
            />
          </DialogContent>
          <DialogActions>
-           <Button onClick={this.handleClose} color="primary">
+           <Button onClick={this.handleCancel} color="primary">
              Cancel
            </Button>
-           <Button onClick={this.handleClose} color="primary">
+           <Button onClick={this.handleSave} color="primary">
              Save
            </Button>
          </DialogActions>
