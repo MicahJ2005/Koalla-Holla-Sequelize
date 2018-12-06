@@ -192,23 +192,25 @@ class EnhancedTable extends React.Component {
                       tabIndex={-1}
                       key={n.id}
                     >
-                      <Button padding="checkbox">
-                        <DeleteIcon onClick={() => this.handleDelete(n.id)}/>
-                      </Button>
+                      <TableCell>
+                        <Button padding="checkbox">
+                          <DeleteIcon onClick={() => this.handleDelete(n.id)}/>
+                        </Button>
+                      </TableCell>
                       <TableCell component="th" scope="row" padding="none">
                         {n.id}
                       </TableCell>
                       <TableCell numeric>{n.name}</TableCell>
                       <TableCell numeric>{n.gender}</TableCell>
                       <TableCell numeric>{n.age}</TableCell>
-                      <div>
+                      <TableCell>
                         {n.ready_to_transfer !== true ? (
                           <Button onClick={()=> this.readyToTransfer(n)}variant="contained" color="primary">Transfer?</Button>
                         ) : (<h3>Ready to Transfer</h3> )
                       }
                       
 
-                      </div>
+                      </TableCell>
                       <TableCell numeric>{n.notes}</TableCell>
                     </TableRow>
                   );
